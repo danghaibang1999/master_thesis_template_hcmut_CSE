@@ -1,0 +1,31 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}Arduino.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}avr/pgmspace.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}string.h\PYGZgt{}}
+
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{define CONTROL\PYGZus{}PIN\PYGZus{}START 2}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{define CONTROL\PYGZus{}PIN\PYGZus{}STOP 3}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{define UART\PYGZus{}BUFFER\PYGZus{}SIZE 64}
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{define ROUNDS 24}
+
+\PYG{k+kt}{char}\PYG{+w}{ }\PYG{n}{uartBuffer}\PYG{p}{[}\PYG{n}{UART\PYGZus{}BUFFER\PYGZus{}SIZE}\PYG{p}{]}\PYG{p}{;}
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{bufferIndex}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+
+\PYG{c+c1}{// PRESENT S\PYGZhy{}box and inverse S\PYGZhy{}box}
+\PYG{k}{const}\PYG{+w}{ }\PYG{k+kt}{uint8\PYGZus{}t}\PYG{+w}{ }\PYG{n}{SBOX}\PYG{p}{[}\PYG{l+m+mi}{16}\PYG{p}{]}\PYG{+w}{ }\PYG{n}{PROGMEM}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{l+m+mh}{0xC}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0x5}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0x6}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0xB}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0x9}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0x0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0xA}\PYG{p}{,}
+\PYG{+w}{                        }\PYG{l+m+mh}{0xD}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0x3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0xE}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0xF}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0x8}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0x4}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0x7}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0x1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0x2}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}\PYG{p}{;}
+\PYG{k}{const}\PYG{+w}{ }\PYG{k+kt}{uint8\PYGZus{}t}\PYG{+w}{ }\PYG{n}{INV\PYGZus{}SBOX}\PYG{p}{[}\PYG{l+m+mi}{16}\PYG{p}{]}\PYG{+w}{ }\PYG{n}{PROGMEM}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{l+m+mh}{0x5}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0xE}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0xF}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0x8}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0xC}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0x1}\PYG{p}{,}
+\PYG{+w}{                        }\PYG{l+m+mh}{0x2}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0xD}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0xB}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0x4}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0x6}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0x3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0x0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0x7}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0x9}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mh}{0xA}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}\PYG{p}{;}
+
+\PYG{c+c1}{// Nibble\PYGZhy{}level P\PYGZhy{}layer and inverse}
+\PYG{k}{const}\PYG{+w}{ }\PYG{k+kt}{uint8\PYGZus{}t}\PYG{+w}{ }\PYG{n}{PBOX}\PYG{p}{[}\PYG{l+m+mi}{16}\PYG{p}{]}\PYG{+w}{ }\PYG{n}{PROGMEM}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{8}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{5}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{9}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{13}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{6}\PYG{p}{,}
+\PYG{+w}{                                    }\PYG{l+m+mi}{10}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{14}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{7}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{11}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{15}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}\PYG{p}{;}
+
+\PYG{c+c1}{// Self\PYGZhy{}inverse diffusion matrix}
+\PYG{k}{const}\PYG{+w}{ }\PYG{k+kt}{uint8\PYGZus{}t}\PYG{+w}{ }\PYG{n}{DIFFUSION\PYGZus{}MATRIX}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{]}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{]}\PYG{+w}{ }\PYG{n}{PROGMEM}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}\PYG{p}{,}
+\PYG{+w}{    }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}\PYG{p}{,}
+\PYG{+w}{    }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}\PYG{p}{,}
+\PYG{+w}{    }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}\PYG{p}{;}
+\end{MintedVerbatim}
