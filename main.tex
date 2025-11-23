@@ -1,0 +1,249 @@
+% --- Document Class ---
+\documentclass[12pt]{article}
+
+% --- Font and Language Packages ---
+% Encoding and font support for Vietnamese
+\usepackage[T5]{fontenc} % Use T5 encoding for Vietnamese font support
+\usepackage[utf8]{inputenc} % UTF-8 input encoding
+\usepackage[vietnamese,english]{babel} % Support Vietnamese and English languages
+\usepackage{times} % Use Times New Roman font
+% Quotation handling with csquotes
+\usepackage[autostyle=false]{csquotes} % Disable autostyle to avoid T5 encoding issues
+\AtBeginDocument{\renewcommand{\mkbibquote}[1]{``#1''}} % Redefine quotation style for compatibility
+
+% --- Page Layout and Geometry Packages ---
+\usepackage[a4paper, left=3.5cm, right=2cm, top=3cm, bottom=3cm]{geometry} % Set page margins
+\usepackage{setspace} % Control line spacing
+\usepackage{fancyhdr} % Customize headers and footers
+\usepackage{lastpage} % Reference the last page
+\setlength{\headheight}{15pt} % Adjust header height to avoid warnings
+
+% --- Section and Title Formatting ---
+\usepackage{titlesec} % Customize section and subsection titles
+
+% --- Table and Tabular Packages ---
+\usepackage{siunitx} % Format units and numbers in tables
+\usepackage{tabularx} % Flexible-width tables
+\usepackage{longtable} % Tables spanning multiple pages
+\usepackage{booktabs} % Professional table rules
+\usepackage{array} % Enhanced array and tabular functionality
+\usepackage{multirow} % Support for multi-row cells
+\usepackage{diagbox} % Diagonal lines in table cells
+\usepackage{caption} % Customize figure and table captions
+\usepackage{subcaption} % Support subfigures and subtables
+\usepackage{tocloft} % Customize table of contents, list of figures, and tables
+\usepackage{rotating} % Rotate tables and figures
+\usepackage{makecell} % Advanced cell formatting in tables
+\usepackage{cellspace} % Add padding to table cells
+\setlength\cellspacetoplimit{1pt} % Top padding for table cells
+\setlength\cellspacebottomlimit{1pt} % Bottom padding for table cells
+
+% --- Math and Symbol Packages ---
+\usepackage{amsmath} % Advanced mathematical typesetting
+\usepackage{amsfonts} % Additional math fonts
+\usepackage{amssymb} % Mathematical symbols
+\usepackage{amsthm} % Theorem-like environments
+\usepackage{mathrsfs} % Script fonts for math
+
+% --- Graphics and Color Packages ---
+\usepackage{graphicx} % Include and manage images
+\usepackage{xcolor} % Enhanced color support
+\usepackage{tikz} % Create vector graphics and diagrams
+\usetikzlibrary{arrows,decorations,backgrounds,calc} % TikZ libraries for arrows, decorations, backgrounds, and calculations
+\usepackage{tcolorbox} % Colored boxes and environments
+
+% --- Algorithm and Code Listing Packages ---
+\usepackage{algorithm} % Algorithm environment
+\usepackage{algorithmicx} % Enhanced algorithm formatting
+\usepackage{algpseudocode} % Pseudocode support for algorithms
+\usepackage{listings} % Typeset source code
+\usepackage{minted} % Syntax-highlighted code listings
+
+% --- Citation and Hyperlink Packages ---
+\usepackage[unicode]{hyperref} % Create hyperlinks
+\hypersetup{urlcolor=blue, linkcolor=black, citecolor=black, colorlinks=true} % Configure hyperlink colors
+\usepackage[style=ieee, backend=biber, language=english]{biblatex} % IEEE citation style with Biber
+\addbibresource{main.bib} % Bibliography file
+
+% --- Miscellaneous Packages ---
+\usepackage{multicol} % Multi-column layouts
+\usepackage{alltt} % Verbatim environment preserving spaces and line breaks
+\usepackage[framemethod=tikz]{mdframed} % Framed environments using TikZ
+\usepackage{enumerate} % Customize enumerated lists
+\usepackage{enumitem} % Advanced list customization
+\usepackage{nomencl} % Nomenclature/list of symbols
+\usepackage{float} % Improved float control
+\usepackage[normalem]{ulem} % Underline and strikeout text
+\usepackage{textgreek} % Greek letters in text mode
+\usepackage{calc} % Calculations for lengths and dimensions
+\usepackage{ifthen} % Conditional commands
+\usepackage{pdfpages} % Include PDF pages
+
+% --- Custom Column Type ---
+% Define centered column type with specified width
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+% --- Nomenclature Setup ---
+\makenomenclature % Enable nomenclature
+
+% --- Theorem and Definition Styles ---
+% Define theorem-like environments in Vietnamese
+\newtheorem{theorem}{{\bf Định lý}} % Theorem
+\newtheorem{property}{{\bf Tính chất}} % Property
+\newtheorem{proposition}{{\bf Mệnh đề}} % Proposition
+\newtheorem{corollary}[proposition]{{\bf Hệ quả}} % Corollary
+\newtheorem{lemma}[proposition]{{\bf Bổ đề}} % Lemma
+\theoremstyle{definition}
+\newtheorem{exer}{Bài toán} % Exercise
+
+% --- Figure and Table Numbering ---
+% Number figures and tables by section
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+\makeatletter
+\@addtoreset{figure}{section} % Reset figure counter per section
+\makeatother
+
+\renewcommand{\thetable}{\thesection.\arabic{table}}
+\makeatletter
+\@addtoreset{table}{section} % Reset table counter per section
+\makeatother
+
+% --- Fancy Header Style ---
+% Configure header with page number
+\pagestyle{fancy}
+\fancyhf{} % Clear default header/footer
+\fancyhead[C]{\thepage} % Center page number in header
+\renewcommand{\headrulewidth}{0pt} % Remove header rule
+\fancyfoot{} % Ensure footer is empty
+
+% --- Set Fancy Page Style for First Pages of ToC, LoF, LoT, LoA ---
+\addtocontents{toc}{\protect\thispagestyle{fancy}} % Fix Mục Lục
+\addtocontents{lof}{\protect\thispagestyle{fancy}} % Fix Danh sách Hình
+\addtocontents{lot}{\protect\thispagestyle{fancy}} % Fix Danh sách Bảng
+\addtocontents{loa}{\protect\thispagestyle{fancy}} % Fix Danh sách Thuật toán
+
+% --- Section Title Formatting ---
+% Customize section, subsection, and subsubsection titles
+\titleformat{\section}
+{\fontsize{15}{18}\bfseries\selectfont}{\thesection}{1em}{}
+\titleformat{\subsection}
+{\fontsize{13}{15.6}\bfseries\selectfont}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+{\fontsize{13}{15.6}\bfseries\selectfont}{\thesubsubsection}{1em}{}
+
+% --- Line Spacing ---
+\setstretch{1.5} % Set 1.5 line spacing
+
+% --- Document Start ---
+\begin{document}
+
+% Include cover pages
+\includepdf[pages=-]{trang_1_2.pdf}
+\includepdf[pages=-]{ths_bm_11_nhiem_vu_lv.pdf}
+
+% Set Vietnamese as the main language
+\selectlanguage{vietnamese}
+
+% --- Start Roman numeral numbering for front matter ---
+\newpage
+\pagenumbering{roman} % Set Roman numeral page numbering
+\setcounter{page}{1} % Start from page i
+\pagestyle{fancy} % Use fancy style to show Roman numerals in header
+\fancyhf{} % Clear header/footer
+\fancyhead[C]{\thepage} % Page number in header
+\fancyfoot{} % Ensure footer is empty
+
+% --- Lời Cảm Ơn (Acknowledgements) ---
+{\fontsize{13}{15.6}\selectfont
+  \input{Intro/Acknowledgements.tex} % Include acknowledgements
+}
+
+% --- Tóm Tắt Tiếng Việt (Vietnamese Abstract) ---
+\newpage
+{\fontsize{13}{15.6}\selectfont
+  \input{Intro/Abstract_VI.tex} % Include Vietnamese abstract
+}
+
+% --- Tóm Tắt Tiếng Anh (English Abstract) ---
+\newpage
+{\fontsize{13}{15.6}\selectfont
+  \input{Intro/Abstract_EN.tex} % Include English abstract
+}
+
+% --- Lời Cam Đoan (Declaration/Commitment) ---
+\newpage
+{\fontsize{13}{15.6}\selectfont
+  \input{Intro/Declaration.tex} % Include declaration
+}
+
+% --- Table of Contents (Mục Lục) ---
+\newpage
+{\fontsize{13}{15.6}\selectfont
+  \renewcommand{\contentsname}{\centering \fontsize{13}{15.6}\selectfont MỤC LỤC} % Customize ToC title
+  \tableofcontents % Generate table of contents
+}
+
+% --- List of Figures (Danh sách hình) ---
+\newpage
+{\fontsize{13}{15.6}\selectfont
+  \renewcommand{\listfigurename}{\centering \fontsize{13}{15.6}\selectfont DANH SÁCH HÌNH VẼ} % Customize LoF title
+  \listoffigures % Generate list of figures
+}
+
+% --- List of Tables (Danh sách bảng) ---
+\newpage
+{\fontsize{13}{15.6}\selectfont
+  \renewcommand{\listtablename}{\centering \fontsize{13}{15.6}\selectfont DANH SÁCH BẢNG BIỂU} % Customize LoT title
+  \listoftables % Generate list of tables
+}
+
+% --- List of Algorithms (Danh sách thuật toán) ---
+\newpage
+{\fontsize{13}{15.6}\selectfont
+  \renewcommand{\listalgorithmname}{\centering \fontsize{13}{15.6}\selectfont DANH SÁCH THUẬT TOÁN} % Customize LoA title
+  \listofalgorithms % Generate list of algorithms
+}
+
+% --- Switch to Arabic numerals for main content ---
+\newpage
+\pagenumbering{arabic} % Chuyển sang số Ả Rập
+\setcounter{page}{1} % Đặt lại số trang bắt đầu từ 1
+\pagestyle{fancy} % Khôi phục kiểu trang với đầu/cuối trang
+
+% --- Main Content Chapters ---
+{\fontsize{13}{15.6}\selectfont
+  \input{Contents/Chapter1.tex} % Chapter 1
+}
+
+\newpage
+{\fontsize{13}{15.6}\selectfont
+  \input{Contents/Chapter2.tex} % Chapter 2
+}
+
+\newpage
+{\fontsize{13}{15.6}\selectfont
+  \input{Contents/Chapter3.tex} % Chapter 3
+}
+
+% --- Nomenclature ---
+\newpage
+{\fontsize{13}{15.6}\selectfont
+  \printnomenclature % Print list of symbols
+}
+
+% --- References ---
+\newpage
+{\fontsize{13}{15.6}\selectfont
+  \printbibliography[heading=bibintoc, title={TÀI LIỆU THAM KHẢO}] % Print bibliography
+}
+
+% --- Appendix ---
+\newpage
+{\fontsize{13}{15.6}\selectfont
+  \input{appendix.tex} % Include appendix content
+}
+
+% --- Include CV PDF ---
+\includepdf[pages=-]{ly_lich.pdf}
+
+\end{document}
