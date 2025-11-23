@@ -1,6 +1,6 @@
-PWD c:\Users\bangd\Documents\Github\Tex
+PWD c:\Users\bangd\Documents\Github\master_thesis_template_hcmut_CSE
 INPUT C:\Users\bangd\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\bangd\Documents\Github\Tex\main.tex
+INPUT c:\Users\bangd\Documents\Github\master_thesis_template_hcmut_CSE\main.tex
 OUTPUT main.log
 INPUT C:\Program Files\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Program Files\MiKTeX\tex\latex\base\article.cls

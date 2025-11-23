@@ -1,11 +1,11 @@
 # Fdb version 4
-["biber main"] 1763879822.53434 "main.bcf" "main.bbl" "main" 1763880121.98853 0
-  "main.bcf" 1763880121 107796 9e2ed2227352b32ac325102323e8c56f "pdflatex"
+["biber main"] 1763881383.99813 "main.bcf" "main.bbl" "main" 1763881393.20563 0
+  "main.bcf" 1763881392 107796 9e2ed2227352b32ac325102323e8c56f "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1763880118.74864 "c:/Users/bangd/Documents/Github/Tex/main.tex" "main.pdf" "main" 1763880121.98929 0
+["pdflatex"] 1763881390.06116 "c:/Users/bangd/Documents/Github/master_thesis_template_hcmut_CSE/main.tex" "main.pdf" "main" 1763881393.20645 0
   "C:/Program Files/MiKTeX/fonts/enc/dvips/vntex/t5.enc" 1368738347 7824 21ade6c3c7fd67cb4ace8dbc91c53118 ""
   "C:/Program Files/MiKTeX/fonts/tfm/adobe/times/ptmr7t.tfm" 1136747054 2124 2601a75482e9426d33db523edf23570a ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -284,18 +284,18 @@
   "Intro/Acknowledgements.tex" 1763876891 77 da88148acf3ff09c492aa3852b3c18a1 ""
   "Intro/Declaration.tex" 1763876891 104 ac2fee3c90fe4aaee95fab0daaa4e53a ""
   "appendix.tex" 1763877187 137 175e3e5c9a4b31f743050c0f725f10ef ""
-  "c:/Users/bangd/Documents/Github/Tex/main.tex" 1763880114 9516 89bd266231600b87c591973545b68783 ""
+  "c:/Users/bangd/Documents/Github/master_thesis_template_hcmut_CSE/main.tex" 1763881379 9516 89bd266231600b87c591973545b68783 ""
   "ly_lich.pdf" 1763878682 75371 9da434fcaf92e4e5420ccc64d1444514 ""
-  "main.aux" 1763880121 2189 65bb1c146c830c3e32ff52332bb48d89 "pdflatex"
-  "main.bbl" 1763879878 486 76d65a242ec496c9b4361af646ff12cb "biber main"
-  "main.loa" 1763880121 23 136f826c8a558e0e7cdd66596c580364 "pdflatex"
-  "main.lof" 1763880121 86 b432e65ffd1183f7a9855655c52eb4bf "pdflatex"
-  "main.lot" 1763880121 86 b432e65ffd1183f7a9855655c52eb4bf "pdflatex"
+  "main.aux" 1763881392 2189 65bb1c146c830c3e32ff52332bb48d89 "pdflatex"
+  "main.bbl" 1763881386 486 76d65a242ec496c9b4361af646ff12cb "biber main"
+  "main.loa" 1763881392 23 136f826c8a558e0e7cdd66596c580364 "pdflatex"
+  "main.lof" 1763881392 86 b432e65ffd1183f7a9855655c52eb4bf "pdflatex"
+  "main.lot" 1763881392 86 b432e65ffd1183f7a9855655c52eb4bf "pdflatex"
   "main.nls" 0 -1 0 ""
-  "main.out" 1763880121 1288 21eefb6d410c10ca7390d47bcf3cccee "pdflatex"
-  "main.run.xml" 1763880121 2396 1d49a64710158afbc58653651fc6ba84 "pdflatex"
-  "main.tex" 1763880114 9516 89bd266231600b87c591973545b68783 ""
-  "main.toc" 1763880121 862 1e8cd6618d6d536d0d722729ac83bc0e "pdflatex"
+  "main.out" 1763881392 1288 21eefb6d410c10ca7390d47bcf3cccee "pdflatex"
+  "main.run.xml" 1763881392 2396 1d49a64710158afbc58653651fc6ba84 "pdflatex"
+  "main.tex" 1763881379 9516 89bd266231600b87c591973545b68783 ""
+  "main.toc" 1763881392 862 1e8cd6618d6d536d0d722729ac83bc0e "pdflatex"
   "ths_bm_11_nhiem_vu_lv.pdf" 1763879548 172645 8b350d8e8b315bf3fd001386118a06fe ""
   "trang_1_2.pdf" 1763879997 108200 48732eb932352c496b46c8f8665bae91 ""
   (generated)
